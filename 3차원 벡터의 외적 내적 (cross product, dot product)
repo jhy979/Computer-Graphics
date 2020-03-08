@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace ::std;
+class vector3d {
+public:
+	int x_, y_, z_;
+	vector3d() {
+		x_ = 0;
+		y_ = 0;
+		z_ = 0;
+	}
+	void ChangeValue(int a, int b, int c) {
+		x_ = a;
+		y_ = b;
+		z_ = c;
+	}
+	void print() {
+		cout << x_ << " " << y_ << " " << z_ << endl;
+	}
+	void operator+(const vector3d& input) {
+		this->x_ += input.x_;
+		this->y_ += input.y_;
+		this->z_ += input.z_;
+	}
+};
+int Dotproduct(const vector3d& v0, const vector3d& v1) {
+	return v0.x_* v1.x_ + v0.y_ + v1.y_ + v0.z_ + v1.z_;
+}
+vector3d Crossproduct(const vector3d& v0, const vector3d& v1) {
+	vector3d value;
+	value.x_ = v0.y_ * v1.z_ - v1.z_ * v0.y_;
+	value.y_ = v1.x_ * v0.z_ - v0.x_ * v1.z_;
+	value.z_ = v0.y_ * v1.x_ - v0.x_ * v1.y_;
+	return value;
+}
+int main() {
+	vector3d a, b, c;
+	a.ChangeValue(1, 2, 3);
+	b.ChangeValue(4, 5, 6);
+	c.ChangeValue(7, 8, 9);
+	a + b;
+	cout << Dotproduct(a, b);
+
+}
